@@ -251,17 +251,18 @@ void MainWindow::on_pushButton_StartSending_clicked()
     ui->progressBar->setValue(static_cast<int>((static_cast<float>(sendedBytes) / static_cast<float>(file_length)) * 100));
 
     ui->progressBar->setEnabled(true);
-    ui->pushButton_StartSending->setEnabled(false);
+
     //emit(recvOK());
 
     sendBuf.append("\xC5\x5C");
     sendBuf.append(static_cast<char>(1));
     sendBuf.append(static_cast<char>(0));
     sendBuf.append(static_cast<char>(4));
-    sendBuf.append(static_cast<char>(address / 0xFFFFFF));
-    sendBuf.append(static_cast<char>((address % 0xFF000000) / 0xFFFF));
-    sendBuf.append(static_cast<char>((address % 0xFF0000) / 0xFF));
-    sendBuf.append(static_cast<char>(address % 0xFF00));
+
+    sendBuf.append(static_cast<char>(address / 0xFFFFFF));  //0xffffffff
+    sendBuf.append(static_cast<char>((address % 0x1000000) / 0xFFFF));
+    sendBuf.append(static_cast<char>((address % 0x10000) / 0xFF));
+    sendBuf.append(static_cast<char>(address % 0x100));
 
     for(int i = 2; i < sendBuf.size(); i++){
         bcc ^= sendBuf.at(i) & 0xff;
@@ -272,7 +273,7 @@ void MainWindow::on_pushButton_StartSending_clicked()
     //qDebug() << sendBuf.toHex();
 
     mySerial.write(sendBuf);
-
+    ui->pushButton_StartSending->setEnabled(false);
 
 }
 
