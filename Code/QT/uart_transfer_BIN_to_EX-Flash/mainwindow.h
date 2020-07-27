@@ -53,7 +53,7 @@ private:
     int terminal_recv_OK = 0;
     int receive_finish_Flag = 0;
     int currentLen = 0;
-
+    int transfer_Started_flag = 0;
 };
 
 #endif // MAINWINDOW_H

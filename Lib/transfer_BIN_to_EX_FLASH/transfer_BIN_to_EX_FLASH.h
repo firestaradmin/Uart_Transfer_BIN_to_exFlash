@@ -12,10 +12,12 @@ void TBEF_uart_receive_process(u8 data);
 
 void TBEF_tim_process(void);
 void TBEF_SendACK(u8 ERROR);
-void TBEF_clearRecvBuf();
-u8 TBEF_framePrasing();
-void TBEF_mainFun();
+void TBEF_clearRecvBuf(void);
+u8 TBEF_frameVerify(void);
+void TBEF_mainFun(void);
 void TBEF_data_CallBack(u8 *dataBuf, u16 len);
+void TBEF_Err_Processing(u8 err);
+void TBEF_CMD_Precesing(void);
 #endif
 
 
