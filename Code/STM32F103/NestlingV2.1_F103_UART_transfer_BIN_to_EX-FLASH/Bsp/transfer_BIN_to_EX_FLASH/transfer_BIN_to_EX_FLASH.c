@@ -108,7 +108,7 @@ void TBEF_CMD_Precesing(void)
 	{
 		transfer_started_flag = 1;
 		bytesStored = 0;
-		stroage_StartAddress = (uint32_t)TBEF_recvBuf[5] * 0xFFFFFF + (uint32_t)TBEF_recvBuf[6] * 0xFFFF + (uint32_t)TBEF_recvBuf[7] * 0xFF + (uint32_t)TBEF_recvBuf[8] ; 
+		stroage_StartAddress = (uint32_t)TBEF_recvBuf[5] * 0x1000000 + (uint32_t)TBEF_recvBuf[6] * 0x10000 + (uint32_t)TBEF_recvBuf[7] * 0x100 + (uint32_t)TBEF_recvBuf[8] ; 
 		//stroage_StartAddress = ((uint32_t)TBEF_recvBuf[5] << 24) & ((uint32_t)TBEF_recvBuf[6] << 16) & ((uint32_t)TBEF_recvBuf[7] << 8) & (uint32_t)TBEF_recvBuf[8];
 	}
 	else if(cmd == 0x02)
